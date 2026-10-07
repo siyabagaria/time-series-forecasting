@@ -45,3 +45,21 @@ Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting
               - 65.1% at 720.     
             - For multivariate forecasting, it also reports better results than the compared RNN-based methods; for example, MSE decreases relative to LSTMa by 26.6%, 28.2%, and 34.3% at prediction lengths 168, 336, and 720.     2012.07436v3
               
+Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting.(Wu et al., 2021)
+    1. Problem with Transformers on time series
+      - Long-term time-series patterns are complex/entangled, so Transformers may not reliably discover the correct temporal dependencies.
+      - Standard Transformer self-attention has \(O(L^2)\) complexity, making it computationally expensive for long sequences.
+      - Existing sparse-attention Transformers such as Informer make attention more efficient, but because they connect only selected individual time points, they can lose          useful information.     
+    2. What Autoformer proposes
+    Autoformer proposes two main changes:
+    - Progressive decomposition: It decomposes the time series into trend-cyclical + seasonal components inside the model itself, rather than doing decomposition only as          preprocessing.   
+    - Auto-Correlation mechanism: It replaces self-attention with a mechanism that finds periodic dependencies and similar sub-series instead of connecting individual             points. It achieves \(O(L\log L)\) complexity.     
+    3. What does it claim in the results?
+    Autoformer claims state-of-the-art long-term forecasting performance and an overall 38% average reduction in MSE across its benchmark settings.     2106.13008v5
+    Some specific comparisons against previous best results:
+    - ETT: 74% lower MSE
+    - Electricity: 18% lower MSE
+    - Exchange: 61% lower MSE
+    - Traffic: 15% lower MSE
+    - Weather: 21% lower MSE
+    - ILI: 43% lower MSE
